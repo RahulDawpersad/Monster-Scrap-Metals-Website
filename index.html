@@ -191,7 +191,7 @@
                 </div>
 
                 <div class="form-container" data-aos="zoom-in-up">
-                    <form name="monster-contact" method="POST" data-netlify="true" class="glass-form">
+                    <form id="monster-contact-form" name="monster-contact" method="POST" data-netlify="true" class="glass-form">
                         <input type="hidden" name="form-name" value="monster-contact">
 
                         <div class="input-box">
@@ -208,6 +208,14 @@
                         </div>
                         <button type="submit" class="btn-submit-glow">SEND REQUEST</button>
                     </form>
+                    <div id="form-success" class="form-success-message" style="display: none;">
+                        <i class="fa-solid fa-check-circle"></i>
+                        <p>Thanks! Your request has been sent. We'll get back to you soon.</p>
+                    </div>
+                    <div id="form-error" class="form-error-message" style="display: none;">
+                        <i class="fa-solid fa-exclamation-circle"></i>
+                        <p>Oops! Something went wrong. Please try again.</p>
+                    </div>
                 </div>
 
             </div>
