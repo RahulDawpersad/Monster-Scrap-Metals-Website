@@ -99,3 +99,34 @@ window.addEventListener('scroll', () => {
         navbar.style.padding = "20px 0";
     }
 });
+
+// 6. NETLIFY FORM SUBMISSION WITH SUCCESS MESSAGE
+const form = document.getElementById('monster-contact-form');
+const successMessage = document.getElementById('form-success');
+const errorMessage = document.getElementById('form-error');
+
+if (form) {
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault(); // Prevent default form submission
+
+        const formData = new FormData(form);
+        const action = form.action || '/'; // Netlify handles at root
+
+        try {
+            const response = await fetch(action, {
+                method: 'POST',
+                body: formData,
+            });
+
+            if (response.ok) {
+                form.style.display = 'none'; // Hide the form
+                successMessage.style.display = 'block'; // Show success message
+                form.reset(); // Reset form fields
+            } else {
+                throw new Error('Form submission failed');
+            }
+        } catch (error) {
+            errorMessage.style.display = 'block'; // Show error message
+        }
+    });
+}
