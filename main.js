@@ -1,34 +1,25 @@
 /**
- * MONSTER SCRAP METALS - Core Logic
+ * MONSTER SCRAP METALS - Thumbnail Navigation System
  */
 
-// 1. SELECT ELEMENTS
+// Mobile Menu
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.querySelector('.nav-links');
 const lines = document.querySelectorAll('.line');
 const navItems = document.querySelectorAll('.nav-links a');
 
-// 2. MOBILE MENU LOGIC
-// Function to handle closing the menu
 const closeMenu = () => {
     navLinks.classList.remove('active');
-    document.body.style.overflow = 'auto'; // Re-enable scrolling
-    
-    // Reset Burger Lines
+    document.body.style.overflow = 'auto';
     lines[0].style.transform = "none";
     lines[1].style.opacity = "1";
     lines[2].style.transform = "none";
 };
 
-// Toggle Menu on Hamburger Click
 hamburger.addEventListener('click', () => {
     navLinks.classList.toggle('active');
-
     if (navLinks.classList.contains('active')) {
-        // Freeze background scroll
-        document.body.style.overflow = 'hidden'; 
-        
-        // Animate Burger to "X"
+        document.body.style.overflow = 'hidden';
         lines[0].style.transform = "rotate(45deg) translate(5px, 6px)";
         lines[1].style.opacity = "0";
         lines[2].style.transform = "rotate(-45deg) translate(5px, -6px)";
@@ -37,42 +28,63 @@ hamburger.addEventListener('click', () => {
     }
 });
 
-// Close Menu when any link is clicked
 navItems.forEach(link => {
     link.addEventListener('click', () => {
         closeMenu();
     });
 });
 
+// Thumbnail Card Navigation
+const thumbnailCards = document.querySelectorAll('.thumbnail-card');
+const detailPages = document.querySelectorAll('.detail-page');
+const heroGrid = document.querySelector('.hero-grid');
+const backButtons = document.querySelectorAll('.back-btn');
 
-// 3. SCROLL ANIMATIONS (Intersection Observer)
-const observerOptions = {
-    threshold: 0.1, // Trigger when 10% of element is visible
-    rootMargin: "0px 0px -50px 0px"
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('show');
-            // Once shown, we can stop observing this specific element
-            observer.unobserve(entry.target); 
+thumbnailCards.forEach(card => {
+    card.addEventListener('click', () => {
+        const targetPage = card.getAttribute('data-page');
+        const targetSection = document.getElementById(`${targetPage}-page`);
+        
+        if (targetSection) {
+            // Hide hero grid
+            heroGrid.style.display = 'none';
+            
+            // Hide all detail pages
+            detailPages.forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show target page
+            targetSection.classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     });
-}, observerOptions);
+});
 
-const hiddenElements = document.querySelectorAll('.hidden-left, .hidden-right, .hidden-up');
-hiddenElements.forEach((el) => observer.observe(el));
+// Back Button Navigation
+backButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        // Hide all detail pages
+        detailPages.forEach(page => {
+            page.classList.remove('active');
+        });
+        
+        // Show hero grid
+        heroGrid.style.display = 'flex';
+        
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+});
 
-
-// 4. SMOOTH SCROLLING
-// Handles the Hero Mouse Icon and any other internal links
+// Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         const targetId = this.getAttribute('href');
         
-        // Only trigger if it's a valid ID (not just "#")
-        if (targetId !== "#") {
+        if (targetId !== "#" && targetId !== "#home") {
             e.preventDefault();
             const targetElement = document.querySelector(targetId);
             
@@ -82,52 +94,54 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                     block: 'start'
                 });
             }
+        } else if (targetId === "#home") {
+            e.preventDefault();
+            // Go back to hero grid
+            detailPages.forEach(page => {
+                page.classList.remove('active');
+            });
+            heroGrid.style.display = 'flex';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     });
 });
 
-
-// 5. NAVBAR BACKGROUND SCROLL EFFECT
-// Adds a solid background to the navbar once you scroll down
+// Navbar scroll effect
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 50) {
-        navbar.style.background = "rgba(0, 0, 0, 0.95)";
-        navbar.style.padding = "15px 0"; // Shrink slightly on scroll
+        navbar.style.background = "rgba(0, 0, 0, 0.98)";
+        navbar.style.padding = "10px 0";
     } else {
-        navbar.style.background = "rgba(10, 10, 10, 0.9)";
-        navbar.style.padding = "20px 0";
+        navbar.style.background = "rgba(10, 10, 10, 0.98)";
+        navbar.style.padding = "12px 0";
     }
 });
 
-// 6. NETLIFY FORM SUBMISSION WITH SUCCESS MESSAGE
+// Form submission
 const form = document.getElementById('monster-contact-form');
 const successMessage = document.getElementById('form-success');
-const errorMessage = document.getElementById('form-error');
 
 if (form) {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-
-        // ✅ FORMAT PHONE NUMBER BEFORE SENDING
+        
+        // Format phone number
         const phoneInput = form.querySelector('input[name="phone"]');
         if (phoneInput) {
-            // Remove spaces & symbols
             let raw = phoneInput.value.replace(/[^\d+]/g, '');
-
-            // Format nicely for emails (prevents # bug)
             phoneInput.value = `Phone: ${raw}`;
         }
-
+        
         const formData = new FormData(form);
         const action = form.action || '/';
-
+        
         try {
             const response = await fetch(action, {
                 method: 'POST',
                 body: formData,
             });
-
+            
             if (response.ok) {
                 form.style.display = 'none';
                 successMessage.style.display = 'block';
@@ -136,9 +150,48 @@ if (form) {
                 throw new Error('Form submission failed');
             }
         } catch (error) {
-            errorMessage.style.display = 'block';
+            alert('Oops! Something went wrong. Please try calling us directly.');
         }
     });
 }
 
+// Add entrance animations
+window.addEventListener('load', () => {
+    const heroHeader = document.querySelector('.hero-header');
+    const thumbnailGrid = document.querySelector('.thumbnail-grid');
+    const quickContact = document.querySelector('.quick-contact');
+    
+    setTimeout(() => {
+        heroHeader.style.opacity = '1';
+        heroHeader.style.transform = 'translateY(0)';
+    }, 100);
+    
+    setTimeout(() => {
+        thumbnailGrid.style.opacity = '1';
+        thumbnailGrid.style.transform = 'translateY(0)';
+    }, 200);
+    
+    setTimeout(() => {
+        quickContact.style.opacity = '1';
+        quickContact.style.transform = 'translateY(0)';
+    }, 300);
+});
 
+// Initial animation setup
+document.addEventListener('DOMContentLoaded', () => {
+    const heroHeader = document.querySelector('.hero-header');
+    const thumbnailGrid = document.querySelector('.thumbnail-grid');
+    const quickContact = document.querySelector('.quick-contact');
+    
+    heroHeader.style.opacity = '0';
+    heroHeader.style.transform = 'translateY(20px)';
+    heroHeader.style.transition = 'all 0.5s ease';
+    
+    thumbnailGrid.style.opacity = '0';
+    thumbnailGrid.style.transform = 'translateY(20px)';
+    thumbnailGrid.style.transition = 'all 0.5s ease';
+    
+    quickContact.style.opacity = '0';
+    quickContact.style.transform = 'translateY(20px)';
+    quickContact.style.transition = 'all 0.5s ease';
+});
