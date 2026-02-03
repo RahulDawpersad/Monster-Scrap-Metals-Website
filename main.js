@@ -107,10 +107,20 @@ const errorMessage = document.getElementById('form-error');
 
 if (form) {
     form.addEventListener('submit', async (e) => {
-        e.preventDefault(); // Prevent default form submission
+        e.preventDefault();
+
+        // ✅ FORMAT PHONE NUMBER BEFORE SENDING
+        const phoneInput = form.querySelector('input[name="phone"]');
+        if (phoneInput) {
+            // Remove spaces & symbols
+            let raw = phoneInput.value.replace(/[^\d+]/g, '');
+
+            // Format nicely for emails (prevents # bug)
+            phoneInput.value = `Phone: ${raw}`;
+        }
 
         const formData = new FormData(form);
-        const action = form.action || '/'; // Netlify handles at root
+        const action = form.action || '/';
 
         try {
             const response = await fetch(action, {
@@ -119,14 +129,16 @@ if (form) {
             });
 
             if (response.ok) {
-                form.style.display = 'none'; // Hide the form
-                successMessage.style.display = 'block'; // Show success message
-                form.reset(); // Reset form fields
+                form.style.display = 'none';
+                successMessage.style.display = 'block';
+                form.reset();
             } else {
                 throw new Error('Form submission failed');
             }
         } catch (error) {
-            errorMessage.style.display = 'block'; // Show error message
+            errorMessage.style.display = 'block';
         }
     });
 }
+
+
