@@ -5,24 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>MONSTER SCRAP METALS | Instant Cash</title>
-
+    <link rel="icon" href="https://public-frontend-cos.metadl.com/mgx/img/favicon_atoms.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-
+    <!-- Navbar -->
     <nav class="navbar">
         <div class="container nav-container">
-            <a href="#" class="logo">
+            <a href="#home" class="logo">
                 <img src="images/logo-transparent.png" alt="Monster Scrap Metals" loading="lazy">
             </a>
             <div class="hamburger" id="hamburger">
@@ -32,168 +28,169 @@
             </div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#services">We Collect</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact" class="nav-cta">Get Quote</a></li>
+                <li><a href="tel:+27744277928" class="nav-cta">Call Now</a></li>
             </ul>
         </div>
     </nav>
 
-    <header id="home" class="hero">
-        <div class="hero-bg"></div>
-        <div class="texture-overlay"></div>
-        <div class="gradient-overlay"></div>
-
-        <div class="container hero-content hidden-up">
+    <!-- Hero Section with Compact Thumbnail Grid -->
+    <section id="home" class="hero-grid">
+        <div class="hero-header">
             <div class="badge-container">
                 <span class="badge"><i class="fa-solid fa-star"></i> #1 RATED SCRAP DEALER</span>
             </div>
-
-            <h1>TURN METAL INTO <br> <span class="neon-text">INSTANT CASH</span></h1>
-
-            <p>Door-to-door collection. Instant Weighing. Instant Pay.</p>
-
-            <div class="cta-group">
-                <a href="tel:+27744277928" class="btn btn-neon">CALL NOW</a>
-                <!-- <a href="#services" class="btn btn-glass">PRICING</a> -->
-            </div>
-
-            <!-- <div class="hero-stats">
-            <div class="stat-box">
-                <i class="fa-solid fa-scale-balanced"></i>
-                <div><strong>FAIR WEIGHING</strong><span>Guaranteed</span></div>
-            </div>
-            <div class="stat-box">
-                <i class="fa-solid fa-money-bill-wave"></i>
-                <div><strong>INSTANT PAY</strong><span>Cash / EFT</span></div>
-            </div>
-        </div> -->
+            <h1>TURN METAL INTO <span class="neon-text">INSTANT CASH</span></h1>
+            <p>Select a service to get started</p>
         </div>
 
-        <a href="#services" class="scroll-down">
-            <span class="mouse">
-                <span class="wheel"></span>
-            </span>
-            <span class="arrow"><i class="fa-solid fa-chevron-down"></i></span>
-        </a>
-    </header>
-
-    <section id="services" class="services">
-        <div class="container">
-            <div class="section-title text-center hidden-up">
-                <h2>WHAT WE <span class="neon-text">HUNT</span></h2>
-                <p>We accept all major non-ferrous and ferrous metals.</p>
+        <div class="thumbnail-grid">
+            <!-- Card 1: What We Buy -->
+            <div class="thumbnail-card" data-page="what-we-buy">
+                <div class="card-icon">
+                    <i class="fa-solid fa-cubes-stacked"></i>
+                </div>
+                <div class="card-content">
+                    <h2>WHAT WE BUY</h2>
+                    <p>Batteries, Copper, Aluminium & More</p>
+                </div>
+                <div class="card-arrow">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
             </div>
 
+            <!-- Card 2: Sell Now -->
+            <div class="thumbnail-card" data-page="sell-now">
+                <div class="card-icon">
+                    <i class="fa-solid fa-money-bill-wave"></i>
+                </div>
+                <div class="card-content">
+                    <h2>SELL NOW</h2>
+                    <p>Instant quote & cash payment</p>
+                </div>
+                <div class="card-arrow">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <!-- Card 3: Free Pickup Service -->
+            <div class="thumbnail-card" data-page="free-pickup">
+                <div class="card-icon">
+                    <i class="fa-solid fa-truck-pickup"></i>
+                </div>
+                <div class="card-content">
+                    <h2>FREE PICKUP</h2>
+                    <p>Door-to-door collection service</p>
+                </div>
+                <div class="card-arrow">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <!-- Card 4: Garage/Yard Clearing -->
+            <div class="thumbnail-card" data-page="clearing-service">
+                <div class="card-icon">
+                    <i class="fa-solid fa-warehouse"></i>
+                </div>
+                <div class="card-content">
+                    <h2>GARAGE / YARD CLEARING</h2>
+                    <p>Professional sorting & clearing</p>
+                </div>
+                <div class="card-arrow">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Contact Bar -->
+        <div class="quick-contact">
+            <a href="tel:+27744277928" class="contact-btn">
+                <i class="fa-solid fa-phone"></i> +27 74 427 7928
+            </a>
+            <a href="https://wa.me/27744277928" class="contact-btn whatsapp" target="_blank">
+                <i class="fa-brands fa-whatsapp"></i> WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- Detail Pages (Hidden by default) -->
+
+    <!-- What We Buy Page -->
+    <section id="what-we-buy-page" class="detail-page">
+        <button class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back</button>
+        <div class="container">
+            <div class="page-header">
+                <h2>WHAT WE <span class="neon-text">BUY</span></h2>
+                <p>We accept all major non-ferrous and ferrous metals</p>
+            </div>
             <div class="grid-cards">
-                <div class="card hidden-up delay-1">
+                <div class="card">
                     <div class="icon-box"><i class="fa-solid fa-car-battery"></i></div>
                     <h3>Batteries</h3>
                     <p>Old car, truck, and industrial batteries.</p>
                 </div>
-                <div class="card hidden-up delay-2">
+                <div class="card">
                     <div class="icon-box"><i class="fa-solid fa-cubes-stacked"></i></div>
                     <h3>Aluminium</h3>
                     <p>Cans, window frames, and loose alloy.</p>
                 </div>
-                <div class="card hidden-up delay-3">
+                <div class="card">
                     <div class="icon-box"><i class="fa-solid fa-microchip"></i></div>
                     <h3>Copper</h3>
                     <p>Wire, piping, and stripping cable.</p>
                 </div>
-                <div class="card hidden-up delay-4">
+                <div class="card">
                     <div class="icon-box"><i class="fa-solid fa-fan"></i></div>
                     <h3>Appliances</h3>
                     <p>Broken aircons, fridges, and motors.</p>
                 </div>
-                <div class="card hidden-up delay-1">
+                <div class="card">
                     <div class="icon-box"><i class="fa-solid fa-gears"></i></div>
                     <h3>Brass</h3>
                     <p>Fittings, taps, and industrial brass.</p>
                 </div>
-                <div class="card hidden-up delay-2">
+                <div class="card">
                     <div class="icon-box"><i class="fa-solid fa-truck-pickup"></i></div>
                     <h3>Steel & Iron</h3>
                     <p>Heavy steel, beams, and construction scrap.</p>
                 </div>
-                <div class="card hidden-up delay-3">
+                <div class="card">
                     <div class="icon-box"><i class="fa-solid fa-car"></i></div>
                     <h3>Rims</h3>
-                    <p>Mag wheels and scrap aluminium rims. Best prices paid.</p>
+                    <p>Mag wheels and scrap aluminium rims.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="about" class="process">
-        <div class="container split-layout">
-            <div class="image-side hidden-left">
-                <img src="images/scrap-yard.png" alt="Scrap Yard">
-                <div class="image-overlay-box">
-                    <h4>FAST PICKUP</h4>
-                </div>
-            </div>
-            <div class="text-side hidden-right">
-                <h4 class="sub-neon">WHY CHOOSE MONSTER?</h4>
-                <h2>WE TURN JUNK INTO <br> <span class="white-text">TREASURE</span></h2>
-                <p>Monster Scrap Metals offers door-to-door scrap metal collection with cash paid on the spot. We
-                    collect from homes, businesses, and job sites, making it easy to turn unwanted metal into instant
-                    money — quick, convenient, and hassle-free.</p>
-
-                <ul class="check-list">
-                    <li><i class="fa-solid fa-check"></i> Instant Cash / EFT Payment</li>
-                    <li><i class="fa-solid fa-check"></i> Transparent Digital Scales</li>
-                    <li><i class="fa-solid fa-check"></i> Professional Dismantling Team</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <div class="scrolling-banner">
-        <div class="banner-content">
-            <span>WE COLLECT • WE WEIGH • WE PAY • CASH ON THE SPOT • </span>
-            <span>WE COLLECT • WE WEIGH • WE PAY • CASH ON THE SPOT • </span>
-        </div>
-    </div>
-
-    <section id="contact" class="contact">
-        <div class="contact-overlay-circle"></div>
+    <!-- Sell Now Page -->
+    <section id="sell-now-page" class="detail-page">
+        <button class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back</button>
         <div class="container">
-            <div class="contact-grid">
-
-                <div class="contact-text" data-aos="fade-right">
-                    <span class="sub-title">GET IN TOUCH</span>
-                    <h2>READY TO <br><span class="text-gradient">SELL?</span></h2>
-                    <p>Fill in the details or call us directly. We are waiting.</p>
-
-                    <div class="contact-info-cards">
-                        <div class="info-item">
-                            <i class="fa-solid fa-phone-volume"></i>
-                            <div>
-                                <span>Call or WhatsApp</span>
-                                <strong><a href="tel:+27744277928">+27 74 427 7928</a></strong>
-                            </div>
-                        </div>
-                        <div class="info-item">
-                            <i class="fa-solid fa-location-dot"></i>
-                            <div>
-                                <span>Service Area</span>
-                                <strong>KwaZulu-Natal</strong>
-                            </div>
+            <div class="page-header">
+                <h2>SELL <span class="neon-text">NOW</span></h2>
+                <p>Get your instant quote and cash payment</p>
+            </div>
+            <div class="sell-content">
+                <div class="sell-info">
+                    <h3>HOW IT WORKS</h3>
+                    <ul class="check-list">
+                        <li><i class="fa-solid fa-check"></i> Contact us via phone or WhatsApp</li>
+                        <li><i class="fa-solid fa-check"></i> We come to your location</li>
+                        <li><i class="fa-solid fa-check"></i> Instant weighing with digital scales</li>
+                        <li><i class="fa-solid fa-check"></i> Get paid immediately - Cash or EFT</li>
+                    </ul>
+                    <div class="info-highlight">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                        <div>
+                            <strong>FAIR WEIGHING GUARANTEED</strong>
+                            <span>Transparent digital scales you can see</span>
                         </div>
                     </div>
-
-                    <!-- <div class="socials">
-                    <a href="https://wa.me/27744277928" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
-                </div> -->
                 </div>
-
-                <div class="form-container" data-aos="zoom-in-up">
-                    <form id="monster-contact-form" name="monster-contact" method="POST" data-netlify="true" class="glass-form" netlify>
+                <div class="contact-form-wrapper">
+                    <form id="monster-contact-form" name="monster-contact" method="POST" class="glass-form" netlify>
                         <input type="hidden" name="form-name" value="monster-contact">
-
+                        <h3>GET A QUOTE</h3>
                         <div class="input-box">
                             <input type="text" name="name" required placeholder=" ">
                             <label>Full Name</label>
@@ -203,7 +200,7 @@
                             <label>Phone Number</label>
                         </div>
                         <div class="input-box">
-                            <textarea name="message" rows="5" required placeholder=" "></textarea>
+                            <textarea name="message" rows="4" required placeholder=" "></textarea>
                             <label>What do you have to sell?</label>
                         </div>
                         <button type="submit" class="btn-submit-glow">SEND REQUEST</button>
@@ -212,23 +209,85 @@
                         <i class="fa-solid fa-check-circle"></i>
                         <p>Thanks! Your request has been sent. We'll get back to you soon.</p>
                     </div>
-                    <div id="form-error" class="form-error-message" style="display: none;">
-                        <i class="fa-solid fa-exclamation-circle"></i>
-                        <p>Oops! Something went wrong. Please try again.</p>
-                    </div>
                 </div>
-
             </div>
         </div>
     </section>
 
+    <!-- Free Pickup Page -->
+    <section id="free-pickup-page" class="detail-page">
+        <button class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back</button>
+        <div class="container">
+            <div class="page-header">
+                <h2>FREE <span class="neon-text">PICKUP</span></h2>
+                <p>Door-to-door collection service</p>
+            </div>
+            <div class="pickup-content">
+                <div class="pickup-info">
+                    <h3>WE COME TO YOU</h3>
+                    <p>Monster Scrap Metals offers free door-to-door scrap metal collection across KwaZulu-Natal. No
+                        need to transport heavy metals yourself!</p>
+                    <ul class="check-list">
+                        <li><i class="fa-solid fa-check"></i> Free collection from homes</li>
+                        <li><i class="fa-solid fa-check"></i> Free collection from businesses</li>
+                        <li><i class="fa-solid fa-check"></i> Free collection from job sites</li>
+                        <li><i class="fa-solid fa-check"></i> Professional dismantling team</li>
+                    </ul>
+                    <div class="cta-group">
+                        <a href="tel:+27744277928" class="btn btn-neon">CALL FOR PICKUP</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clearing Service Page -->
+    <section id="clearing-service-page" class="detail-page">
+        <button class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back</button>
+        <div class="container">
+            <div class="page-header">
+                <h2>GARAGE / YARD <span class="neon-text">CLEARING</span></h2>
+                <p>Professional sorting and clearing service</p>
+            </div>
+            <div class="clearing-content">
+                <div class="clearing-info">
+                    <p class="intro-text">Got a messy garage, yard, or storage area full of old metal? We'll sort
+                        through everything, identify valuable scrap, and clear it all out for you.</p>
+                    <div class="service-features">
+                        <div class="feature-box">
+                            <i class="fa-solid fa-broom"></i>
+                            <h4>Full Clearing</h4>
+                            <p>We remove all unwanted metal items</p>
+                        </div>
+                        <div class="feature-box">
+                            <i class="fa-solid fa-sort"></i>
+                            <h4>Professional Sorting</h4>
+                            <p>We separate valuable metals on-site</p>
+                        </div>
+                        <div class="feature-box">
+                            <i class="fa-solid fa-money-bill-wave"></i>
+                            <h4>Instant Payment</h4>
+                            <p>Get paid for all valuable scrap</p>
+                        </div>
+                    </div>
+                    <div class="cta-group">
+                        <a href="tel:+27744277928" class="btn btn-neon">BOOK CLEARING SERVICE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <p>MONSTER SCRAP METALS © 2026. BUILT TOUGH. Developed By <a
-                href="https://www.designx-solutions.co.za">DesignX</a></p>
+        <p>MONSTER SCRAP METALS © 2026. Developed By <a href="https://www.designx-solutions.co.za">DesignX</a></p>
     </footer>
 
-    <a href="https://wa.me/27744277928?text=Hi%2C%20I%27d%20like%20to%20get%20a%20quote%20for%20selling%20my%20scrap%20metals." class="wa-float" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/27744277928?text=Hi%2C%20I%27d%20like%20to%20get%20a%20quote%20for%20selling%20my%20scrap%20metals."
+        class="wa-float" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
 
     <script src="main.js"></script>
 </body>
