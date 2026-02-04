@@ -75,7 +75,7 @@ h4 {
 }
 
 .logo img {
-    height: 50px;
+    height: 80px;
     width: auto;
     max-width: 100%;
     object-fit: contain;
@@ -127,24 +127,24 @@ h4 {
 /* Hero Grid Section - Compact */
 .hero-grid {
     min-height: 100vh;
-    padding: 120px 20px 60px;
-    /* Increased top padding for better spacing */
+    padding: 140px 20px 60px;
 
-    /* Replace the URL below with your actual image path */
-    background: linear-gradient(rgba(10, 10, 10, 0.85),
-            rgba(10, 10, 10, 0.95)),
-        url('images/hero-bg.png');
+    background: linear-gradient(
+            rgba(10, 10, 10, 0.75),
+            rgba(10, 10, 10, 0.75)
+        ),
+        url('images/bg-hero.png');
 
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    /* Optional: adds a nice parallax effect */
 
     display: flex;
     flex-direction: column;
     justify-content: center;
     position: relative;
 }
+
 
 .hero-header {
     text-align: center;
@@ -161,6 +161,9 @@ h4 {
     background: rgba(57, 255, 20, 0.1);
     border: 1px solid var(--neon-green);
     color: var(--neon-green);
+    /* border: 2px solid var(--neon-green);
+    background: var(--neon-green);
+    color: black; */
     padding: 8px 18px;
     font-weight: 700;
     font-size: 0.75rem;
@@ -279,9 +282,12 @@ h4 {
 }
 
 .contact-btn {
-    background: rgba(57, 255, 20, 0.08);
-    border: 2px solid var(--neon-green);
-    color: var(--neon-green);
+    /* background: rgba(57, 255, 20, 0.08); */
+border: 2px solid var(--neon-green);
+    
+    background: var(--neon-green);
+    color: black;
+    /* color: var(--neon-green); */
     padding: 12px 25px;
     border-radius: 50px;
     font-weight: 700;
@@ -307,7 +313,7 @@ h4 {
 .detail-page {
     display: none;
     min-height: 100vh;
-    padding: 100px 20px 50px;
+    padding: 120px 20px 50px;
     background: var(--bg-dark);
     animation: fadeIn 0.4s ease;
 }
@@ -806,9 +812,12 @@ h4 {
 }
 
 @keyframes pulse {
-    0%, 100% {
+
+    0%,
+    100% {
         box-shadow: 0 0 0 0 rgba(57, 255, 20, 0.7);
     }
+
     50% {
         box-shadow: 0 0 0 20px rgba(57, 255, 20, 0);
     }
@@ -826,7 +835,7 @@ h4 {
     font-weight: 700;
 }
 
-.cta-content > p {
+.cta-content>p {
     color: var(--text-gray);
     font-size: 1rem;
     margin-bottom: 30px;
@@ -911,15 +920,15 @@ h4 {
     .pickup-content {
         grid-template-columns: 1fr;
     }
-    
+
     .page-header h2 {
         font-size: 2.5rem;
     }
-    
+
     .pickup-info-card {
         padding: 35px;
     }
-    
+
     .features-grid {
         grid-template-columns: 1fr;
     }
@@ -927,37 +936,55 @@ h4 {
 
 @media (max-width: 640px) {
     .detail-page {
-        padding: 20px 15px;
+        padding: 110px 15px 40px;
     }
-    
+
     .back-btn {
         top: 15px;
         left: 15px;
         padding: 10px 20px;
         font-size: 0.9rem;
     }
-    
+
     .page-header h2 {
         font-size: 2rem;
     }
-    
+
     .subtitle {
         font-size: 1rem;
     }
-    
+
     .pickup-info-card,
     .cta-card {
         padding: 25px;
     }
-    
+
     .pickup-info-card h3 {
         font-size: 1.5rem;
     }
-    
+
     .btn {
         padding: 15px 30px;
         font-size: 0.95rem;
     }
+}
+
+/* .pickup-content {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.pickup-info h3 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: var(--neon-green);
+}
+
+.pickup-info>p {
+    color: var(--text-gray);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 25px;
 }
 
 .cta-group {
@@ -965,6 +992,35 @@ h4 {
     gap: 15px;
     margin-top: 30px;
 }
+
+.btn {
+    padding: 15px 35px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    transition: 0.3s;
+    display: inline-block;
+}
+
+.btn-neon {
+    background: var(--neon-green);
+    color: black;
+    border: 2px solid var(--neon-green);
+}
+
+.btn-neon:hover {
+    background: transparent;
+    color: var(--neon-green);
+    box-shadow: 0 0 25px rgba(57, 255, 20, 0.4);
+    transform: translateY(-2px);
+} */
+.cta-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
 /* Clearing Content */
 .clearing-content {
     max-width: 900px;
@@ -973,9 +1029,12 @@ h4 {
 
 /* Make the WhatsApp icon inside buttons look beefy */
 .btn-large-icon i {
-    font-size: 1.4rem; /* Makes the icon noticeably bigger */
-    margin-right: 10px; /* Gives it space from the text */
-    vertical-align: middle; /* Keeps it centered with the text */
+    font-size: 1.4rem;
+    /* Makes the icon noticeably bigger */
+    margin-right: 10px;
+    /* Gives it space from the text */
+    vertical-align: middle;
+    /* Keeps it centered with the text */
 }
 
 /* Optional: Add a slight pulse to the icon to make it 'pop' */
@@ -1089,7 +1148,7 @@ footer a {
 /* Mobile Responsive */
 @media (max-width: 768px) {
     .hero-grid {
-        padding: 80px 15px 30px;
+        padding: 110px 15px 30px;
     }
 
     .hero-header h1 {
@@ -1176,7 +1235,7 @@ footer a {
     }
 
     .logo img {
-        height: 40px;
+        height: 80px;
     }
 }
 
@@ -1194,7 +1253,7 @@ footer a {
     }
 
     .detail-page {
-        padding: 90px 15px 40px;
+        padding: 110px 15px 40px;
     }
 }
 
