@@ -11,7 +11,63 @@
         href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* ADD THIS FOR THE FLASH TICKER */
+        .flash-ticker-wrapper {
+            grid-column: 1 / -1;
+            /* Spans full width if inside a grid */
+            width: 100%;
+            background: #000;
+            border-top: 1px solid #39ff14;
+            border-bottom: 1px solid #39ff14;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 10px 0;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .flash-track {
+            display: inline-block;
+            animation: scroll-left 25s linear infinite;
+        }
+
+        .flash-item {
+            display: inline-block;
+            color: #fff;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin: 0 2rem;
+        }
+
+        .flash-item span {
+            color: #39ff14;
+            /* Neon Green Highlight */
+            margin-right: 10px;
+        }
+
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Mobile adjustment */
+        @media (max-width: 768px) {
+            .flash-item {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -33,6 +89,24 @@
     </nav>
 
     <section id="home" class="hero-grid">
+
+        <div class="flash-ticker-wrapper">
+            <div class="flash-track">
+                <div class="flash-item"><span><i class="fa-solid fa-bolt"></i></span> FREE COLLECTIONS</div>
+                <div class="flash-item"><span><i class="fa-solid fa-car-burst"></i></span> FREE CUTTING & REMOVING OF
+                    JUNK CARS</div>
+                <div class="flash-item"><span><i class="fa-solid fa-truck-pickup"></i></span> WE BUY BAKKIES & TRUCKS
+                </div>
+                <div class="flash-item"><span><i class="fa-solid fa-star"></i></span> INSTANT CASH PAYMENT</div>
+
+                <div class="flash-item"><span><i class="fa-solid fa-bolt"></i></span> FREE COLLECTIONS</div>
+                <div class="flash-item"><span><i class="fa-solid fa-car-burst"></i></span> FREE CUTTING & REMOVING OF
+                    JUNK CARS</div>
+                <div class="flash-item"><span><i class="fa-solid fa-truck-pickup"></i></span> WE BUY BAKKIES & TRUCKS
+                </div>
+                <div class="flash-item"><span><i class="fa-solid fa-star"></i></span> INSTANT CASH PAYMENT</div>
+            </div>
+        </div>
         <div class="hero-header">
             <div class="badge-container">
                 <span class="badge"><i class="fa-solid fa-star"></i> #1 RATED SCRAP DEALER</span>
@@ -48,7 +122,7 @@
                 </div>
                 <div class="card-content">
                     <h2>WHAT WE BUY</h2>
-                    <p>Batteries, Copper, Aluminium & More</p>
+                    <p>Batteries, Copper, Aluminium & anything of value while sorting</p>
                 </div>
                 <div class="card-arrow">
                     <i class="fa-solid fa-chevron-right"></i>
@@ -110,7 +184,7 @@
         <div class="container">
             <div class="page-header">
                 <h2>WHAT WE <span class="neon-text">BUY</span></h2>
-                <p>We accept all major non-ferrous and ferrous metals</p>
+                <p>Batteries, Copper, Aluminium & anything of value while sorting</p>
             </div>
             <div class="grid-cards">
                 <div class="card">
@@ -148,6 +222,11 @@
                     <h3>Rims</h3>
                     <p>Mag wheels and scrap aluminium rims.</p>
                 </div>
+                <div class="card">
+                    <div class="icon-box"><i class="fa-solid fa-magnifying-glass-dollar"></i></div>
+                    <h3>Anything of Value</h3>
+                    <p>We check for anything of value while sorting.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -180,20 +259,31 @@
                     <form id="monster-contact-form" name="monster-contact" method="POST" class="glass-form" netlify>
                         <input type="hidden" name="form-name" value="monster-contact">
                         <h3>GET A QUOTE</h3>
+
                         <div class="input-box">
                             <input type="text" name="name" required placeholder=" ">
                             <label>Full Name</label>
                         </div>
+
+                        <!-- ✅ NEW EMAIL FIELD -->
+                        <div class="input-box">
+                            <input type="email" name="email" required placeholder=" ">
+                            <label>Email Address</label>
+                        </div>
+
                         <div class="input-box">
                             <input type="tel" name="phone" required placeholder=" ">
                             <label>Phone Number</label>
                         </div>
+
                         <div class="input-box">
                             <textarea name="message" rows="4" required placeholder=" "></textarea>
                             <label>What do you have to sell?</label>
                         </div>
+
                         <button type="submit" class="btn-submit-glow">SEND REQUEST</button>
                     </form>
+
                     <div id="form-success" class="form-success-message" style="display: none;">
                         <i class="fa-solid fa-check-circle"></i>
                         <p>Thanks! Your request has been sent. We'll get back to you soon.</p>
@@ -204,9 +294,9 @@
     </section>
 
 
-<section id="free-pickup-page" class="detail-page">
+    <section id="free-pickup-page" class="detail-page">
         <button class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back</button>
-        
+
         <div class="container">
             <!-- Hero Header -->
             <div class="page-header">
@@ -225,8 +315,9 @@
                         <i class="fa-solid fa-location-dot"></i>
                     </div> -->
                     <h3>WE COME TO YOU</h3>
-                    <p class="description">Monster Scrap Metals offers free door-to-door scrap metal collection across KwaZulu-Natal. No need to transport heavy metals yourself!</p>
-                    
+                    <p class="description">Monster Scrap Metals offers free door-to-door scrap metal collection across
+                        KwaZulu-Natal. No need to transport heavy metals yourself!</p>
+
                     <div class="features-grid">
                         <div class="feature-item">
                             <div class="feature-icon">
@@ -237,7 +328,7 @@
                                 <p>Free collection from homes</p>
                             </div>
                         </div>
-                        
+
                         <div class="feature-item">
                             <div class="feature-icon">
                                 <i class="fa-solid fa-building"></i>
@@ -247,7 +338,7 @@
                                 <p>Free collection from businesses</p>
                             </div>
                         </div>
-                        
+
                         <div class="feature-item">
                             <div class="feature-icon">
                                 <i class="fa-solid fa-helmet-safety"></i>
@@ -257,7 +348,7 @@
                                 <p>Free collection from job sites</p>
                             </div>
                         </div>
-                        
+
                         <div class="feature-item">
                             <div class="feature-icon">
                                 <i class="fa-solid fa-screwdriver-wrench"></i>
@@ -278,18 +369,18 @@
                         </div>
                         <h3>Ready to Schedule?</h3>
                         <p>Call us now for immediate pickup service</p>
-                        
+
                         <a href="tel:+27744277928" class="btn btn-neon">
                             <i class="fa-solid fa-phone"></i>
                             CALL FOR PICKUP
                         </a>
-                        
+
                         <div class="contact-info">
                             <p class="phone-number">+27 74 427 7928</p>
                             <p class="availability">Available 24/7</p>
                         </div>
                     </div>
-                    
+
                     <div class="benefits-list">
                         <div class="benefit-item">
                             <i class="fa-solid fa-circle-check"></i>
