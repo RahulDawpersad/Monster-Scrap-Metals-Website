@@ -1,13 +1,11 @@
 /**
  * MONSTER SCRAP METALS - Thumbnail Navigation System
  */
-
 // Mobile Menu
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.querySelector('.nav-links');
 const lines = document.querySelectorAll('.line');
 const navItems = document.querySelectorAll('.nav-links a');
-
 const closeMenu = () => {
     navLinks.classList.remove('active');
     document.body.style.overflow = 'auto';
@@ -15,7 +13,6 @@ const closeMenu = () => {
     lines[1].style.opacity = "1";
     lines[2].style.transform = "none";
 };
-
 hamburger.addEventListener('click', () => {
     navLinks.classList.toggle('active');
     if (navLinks.classList.contains('active')) {
@@ -27,67 +24,73 @@ hamburger.addEventListener('click', () => {
         closeMenu();
     }
 });
-
 navItems.forEach(link => {
     link.addEventListener('click', () => {
         closeMenu();
     });
 });
 
-// Thumbnail Card Navigation
+// Core navigation function
 const thumbnailCards = document.querySelectorAll('.thumbnail-card');
 const detailPages = document.querySelectorAll('.detail-page');
 const heroGrid = document.querySelector('.hero-grid');
 const backButtons = document.querySelectorAll('.back-btn');
 
+function showSection(sectionId) {
+    if (sectionId === 'home') {
+        heroGrid.style.display = 'flex';
+        detailPages.forEach(page => page.classList.remove('active'));
+    } else {
+        heroGrid.style.display = 'none';
+        detailPages.forEach(page => page.classList.remove('active'));
+        const targetSection = document.getElementById(sectionId);
+        if (targetSection) targetSection.classList.add('active');
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Thumbnail clicks: Show section and push history state
 thumbnailCards.forEach(card => {
     card.addEventListener('click', () => {
         const targetPage = card.getAttribute('data-page');
-        const targetSection = document.getElementById(`${targetPage}-page`);
-        
-        if (targetSection) {
-            // Hide hero grid
-            heroGrid.style.display = 'none';
-            
-            // Hide all detail pages
-            detailPages.forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            // Show target page
-            targetSection.classList.add('active');
-            
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        const targetSectionId = `${targetPage}-page`;
+        showSection(targetSectionId);
+        history.pushState(null, '', `#${targetPage}`);
     });
 });
 
-// Back Button Navigation
+// Back buttons: Use history.back() to trigger popstate
 backButtons.forEach(btn => {
     btn.addEventListener('click', () => {
-        // Hide all detail pages
-        detailPages.forEach(page => {
-            page.classList.remove('active');
-        });
-        
-        // Show hero grid
-        heroGrid.style.display = 'flex';
-        
-        // Scroll to top
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        history.back();
     });
 });
 
-// Smooth scrolling for anchor links
+// Handle browser/phone back (popstate) and hash changes
+window.addEventListener('popstate', () => {
+    const hash = window.location.hash.substring(1);
+    if (hash) {
+        showSection(`${hash}-page`);
+    } else {
+        showSection('home');
+    }
+});
+
+// Handle initial load (e.g., if URL has #hash)
+const initialHash = window.location.hash.substring(1);
+if (initialHash) {
+    showSection(`${initialHash}-page`);
+} else {
+    showSection('home');
+}
+
+// Smooth scrolling for anchor links (updated for #home)
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         const targetId = this.getAttribute('href');
-        
         if (targetId !== "#" && targetId !== "#home") {
             e.preventDefault();
             const targetElement = document.querySelector(targetId);
-            
             if (targetElement) {
                 targetElement.scrollIntoView({
                     behavior: 'smooth',
@@ -96,12 +99,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             }
         } else if (targetId === "#home") {
             e.preventDefault();
-            // Go back to hero grid
-            detailPages.forEach(page => {
-                page.classList.remove('active');
-            });
-            heroGrid.style.display = 'flex';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            showSection('home');
+            history.pushState(null, '', window.location.pathname); // Remove hash
         }
     });
 });
@@ -121,7 +120,6 @@ window.addEventListener('scroll', () => {
 // Form submission
 const form = document.getElementById('monster-contact-form');
 const successMessage = document.getElementById('form-success');
-
 if (form) {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
