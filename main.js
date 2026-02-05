@@ -120,35 +120,61 @@ window.addEventListener('scroll', () => {
 // Form submission
 const form = document.getElementById('monster-contact-form');
 const successMessage = document.getElementById('form-success');
+
 if (form) {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         
-        // Format phone number
+        // 1. Get the data for WhatsApp formatting BEFORE we send the email
+        const formData = new FormData(form);
+        const name = formData.get('name');
+        const email = formData.get('email');
+        const rawPhone = form.querySelector('input[name="phone"]').value;
+        const message = formData.get('message');
+        
+        // 2. Format phone number for the Netlify Email (Optional, purely aesthetic for email)
         const phoneInput = form.querySelector('input[name="phone"]');
         if (phoneInput) {
-            let raw = phoneInput.value.replace(/[^\d+]/g, '');
-            phoneInput.value = `Phone: ${raw}`;
+            let cleanPhone = rawPhone.replace(/[^\d+]/g, '');
+            phoneInput.value = `Phone: ${cleanPhone}`; 
         }
+
+        // 3. Construct the WhatsApp URL
+        // This is the Client's phone number
+        const clientPhoneNumber = "27744277928"; 
         
-        const formData = new FormData(form);
+        // Create the text message
+        const whatsappText = `*NEW QUOTE REQUEST*%0A%0A*Name:* ${name}%0A*Email:* ${email}%0A*Phone:* ${rawPhone}%0A*Items:* ${message}`;
+        
+        // Create the link
+        const whatsappUrl = `https://wa.me/${clientPhoneNumber}?text=${whatsappText}`;
+
+        // 4. Send the Email to Netlify (Background Process)
         const action = form.action || '/';
         
         try {
             const response = await fetch(action, {
                 method: 'POST',
-                body: formData,
+                body: new FormData(form), // Re-grab form data with updated phone value
             });
             
             if (response.ok) {
+                // 5. SUCCESS: Hide form, show message, AND Open WhatsApp
                 form.style.display = 'none';
                 successMessage.style.display = 'block';
                 form.reset();
+                
+                // --- THE MAGIC PART ---
+                // Open WhatsApp in a new tab/window
+                window.open(whatsappUrl, '_blank');
+                
             } else {
                 throw new Error('Form submission failed');
             }
         } catch (error) {
-            alert('Oops! Something went wrong. Please try calling us directly.');
+            alert('Oops! The email failed, but we will open WhatsApp for you now.');
+            // Even if email fails, try to open WhatsApp so the lead isn't lost
+            window.open(whatsappUrl, '_blank');
         }
     });
 }
